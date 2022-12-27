@@ -1,0 +1,3 @@
+[submodule "practical_data_engineering_shared"]
+	path = practical_data_engineering_shared
+	url = https://github.com/numentum/practical_data_engineering_shared.git
