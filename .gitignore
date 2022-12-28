@@ -1,6 +1,8 @@
 notebooks/*
 !notebooks/0_generate_data.ipynb
 
+**/*.egg-info
+
 .dagster/*
 !.dagster/dagster.yaml
 
