@@ -1,3 +1,5 @@
+credentials.json
+
 notebooks/*
 !notebooks/0_generate_data.ipynb
 
