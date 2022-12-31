@@ -15,6 +15,7 @@ setup(
         "pandas_datareader",
         "yfinance",
         "psycopg2-binary",
+        "google-api-python-client",
     ],
     extras_require={"dev": ["dagit", "pytest"]},
 )
