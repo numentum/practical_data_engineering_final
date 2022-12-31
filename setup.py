@@ -16,6 +16,7 @@ setup(
         "yfinance",
         "psycopg2-binary",
         "google-api-python-client",
+        "geopy",
     ],
     extras_require={"dev": ["dagit", "pytest"]},
 )
