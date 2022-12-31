@@ -1,8 +1,8 @@
 from datetime import datetime
 from dagster import job, monthly_partitioned_config, make_values_resource, in_process_executor
 
-from ops.J3_partitioned_process_records.extract_table import extract_table_op
-from ops.J3_partitioned_process_records.transform_record import transform_record_op
+from pde_dagster.ops.J3_partitioned_process_records.extract_table import extract_table_op
+from pde_dagster.ops.J3_partitioned_process_records.transform_record import transform_record_op
 from pde_dagster.ops.load_table import load_table_op
 from pde_dagster.resources.postgres import postgres_resource
 

@@ -2,4 +2,3 @@ locations:
   - location_name: pde_dagster
     code_source:
       package_name: pde_dagster
-    working_directory: ./pde_dagster

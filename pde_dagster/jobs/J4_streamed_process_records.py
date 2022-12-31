@@ -1,6 +1,6 @@
 from dagster import job, in_process_executor
 from pde_dagster.resources.postgres import postgres_resource
-from ops.J4_streamed_process_records.streamed_process_records import streamed_process_records_op
+from pde_dagster.ops.J4_streamed_process_records.streamed_process_records import streamed_process_records_op
 
 
 @job(
