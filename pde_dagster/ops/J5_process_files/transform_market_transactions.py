@@ -6,6 +6,6 @@ from practical_data_engineering_shared.process_transactions.market import transf
 
 @op(name="transform_market_transactions_op", ins={"df": In(pd.DataFrame)})
 def transform_market_transactions_op(context, df):
-    df, errors = transform_market_transactions(df, verbose=True, context=context)
+    df, errors = transform_market_transactions(df, context=context)
     context.log.info(errors)
     return df
