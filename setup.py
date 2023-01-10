@@ -19,4 +19,5 @@ setup(
         "geopy",
     ],
     extras_require={"dev": ["dagit", "pytest"]},
+    package_data={"pde_dagster": ["credentials.json"]},
 )
