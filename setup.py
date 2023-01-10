@@ -5,7 +5,6 @@ setup(
     packages=find_packages(exclude=["pde_dagster_tests"]),
     install_requires=[
         "dagster",
-        "numpy",
         "dagster-cloud",
         "boto3",
         "pandas",
