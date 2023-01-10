@@ -10,4 +10,4 @@ def load_table_op(context, df):
     Loads the transformed records to the final destination.
     """
     _, _, conn_str = context.resources.postgres_resource
-    load_dataframe(df, pg_conn=conn_str)
+    load_dataframe(df, pg_conn=conn_str, context=context)
