@@ -8,7 +8,6 @@ setup(
         "dagster-cloud",
         "boto3",
         "pandas",
-        "numpy",
         "matplotlib",
         "textblob",
         "tweepy",
