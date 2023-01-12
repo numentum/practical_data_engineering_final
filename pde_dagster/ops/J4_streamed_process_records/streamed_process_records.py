@@ -1,3 +1,4 @@
+import json
 from dagster import op
 import psycopg2
 import pandas as pd
@@ -15,8 +16,13 @@ def streamed_process_records_op(context):
 
     products_df = extract_table("products")
 
+    cursor_factory = psycopg2.extras.RealDictCursor
+
+    if "online_transactions" in query_str:
+        cursor_factory = psycopg2.extras.DictCursor
+
     with psycopg2.connect(conn_str) as conn:
-        with conn.cursor(name="server_side_cursor", cursor_factory=psycopg2.extras.RealDictCursor) as cursor:
+        with conn.cursor(name="server_side_cursor", cursor_factory=cursor_factory) as cursor:
             cursor.itersize = 500
             write_batch_size = 500
 
@@ -26,7 +32,10 @@ def streamed_process_records_op(context):
             i = 0
 
             for record in cursor:
-                df_of_record = pd.DataFrame(record, index=[0])
+                if "online_transactions" in query_str:
+                    record = [json.dumps(r) for r in record]
+
+                df_of_record = pd.DataFrame(record, index=[0], columns=[desc[0] for desc in cursor.description])
 
                 if "pos_transactions" in query_str:
                     transformed_df = transform_pos_transactions(df_of_record, products_df=products_df)
