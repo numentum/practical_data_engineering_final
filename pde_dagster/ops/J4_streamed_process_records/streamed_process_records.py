@@ -39,7 +39,7 @@ def streamed_process_records_op(context):
                 if "pos_transactions" in query_str:
                     transformed_df = transform_pos_transactions(df_of_record, products_df=products_df)
                 elif "online_transactions" in query_str:
-                    transformed_df = transform_online_transactions(df_of_record, products_df=products_df)
+                    transformed_df = transform_online_transactions(df_of_record, products_df=products_df, context=context)
                 elif "crypto_transactions" in query_str:
                     transformed_df = transform_crypto_transactions(df_of_record, products_df=products_df)
                 else:
