@@ -7,7 +7,7 @@ concurrency:
   group: ${{ github.ref }}
   cancel-in-progress: true
 env:
-  DAGSTER_CLOUD_URL: "http://numentum.dagster.cloud"
+  DAGSTER_CLOUD_URL: 'http://numentum.dagster.cloud'
   DAGSTER_CLOUD_API_TOKEN: ${{ secrets.DAGSTER_CLOUD_API_TOKEN }}
   ENABLE_FAST_DEPLOYS: 'true'
 
@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       build_info: ${{ steps.parse-workspace.outputs.build_info }}
-    
+
     steps:
       - name: Parse cloud workspace
         if: env.ENABLE_FAST_DEPLOYS != 'true'
@@ -32,14 +32,15 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
           path: project-repo
-          
+          submodules: recursive
+
       - name: Build and deploy Python executable
         if: env.ENABLE_FAST_DEPLOYS == 'true'
         uses: dagster-io/dagster-cloud-action/actions/build_deploy_python_executable@pex-v0.1
         with:
-          dagster_cloud_file: "$GITHUB_WORKSPACE/project-repo/dagster_cloud.yaml"
-          build_output_dir: "$GITHUB_WORKSPACE/build"
-          python_version: "3.8"
+          dagster_cloud_file: '$GITHUB_WORKSPACE/project-repo/dagster_cloud.yaml'
+          build_output_dir: '$GITHUB_WORKSPACE/build'
+          python_version: '3.8'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -57,6 +58,7 @@ jobs:
         uses: actions/checkout@v3
         with:
           ref: ${{ github.head_ref }}
+          submodules: recursive
       - name: Build and deploy to Dagster Cloud serverless
         uses: dagster-io/dagster-cloud-action/actions/serverless_branch_deploy@v0.1
         with:
@@ -67,4 +69,3 @@ jobs:
           organization_id: ${{ secrets.ORGANIZATION_ID }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
