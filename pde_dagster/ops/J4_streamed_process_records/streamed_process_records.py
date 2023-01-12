@@ -30,7 +30,6 @@ def streamed_process_records_op(context):
 
             dfs = []
             i = 0
-
             for record in cursor:
                 if "online_transactions" in query_str:
                     record = [json.dumps(r) for r in record]
